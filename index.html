@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Neon Achievement Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #000000; /* Pure black background */
+    color: #a0f0f7;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  a {
+    color: #00ffe7;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  a:hover, a:focus {
+    color: #00fff0;
+    text-shadow:
+      0 0 6px #00fff0,
+      0 0 12px #00fff0;
+    outline: none;
+  }
+  h1, h2, h3, h4 {
+    margin-top: 0;
+    font-weight: 700;
+    color: #00eaff;
+    text-shadow:
+      0 0 8px #00eaff,
+      0 0 14px #00d9ff,
+      0 0 20px #00afff;
+  }
+  h1 {
+    font-size: 2.75rem;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    text-shadow:
+      0 0 6px #00ddff,
+      0 0 12px #00ccff;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #8ee9f3;
+    text-shadow: 0 0 2px #00ccd5;
+  }
+
+  /* Container with max width */
+  .container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px 16px 64px;
+  }
+
+  /* Header */
+  header {
+    background: #0d1117;
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #0ff1;
+    box-shadow:
+      0 1px 10px rgba(0,255,255,0.3);
+    backdrop-filter: blur(14px);
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #00fff0;
+    user-select: none;
+    text-shadow:
+      0 0 8px #00fff0,
+      0 0 20px #00ccff;
+  }
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #00d4e0;
+    text-shadow:
+      0 0 4px #00d4e0;
+    box-shadow: inset 0 0 6px #00d4e0;
+    transition: box-shadow 0.3s ease;
+  }
+  nav a:hover, nav a:focus {
+    background-color: #00fff033;
+    color: #00fff0;
+    box-shadow:
+      0 0 14px #00fff0,
+      inset 0 0 14px #00fff0;
+    outline: none;
+  }
+
+  /* Main content sections spacing */
+  section {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid #00ffea22;
+  }
+  section:last-child {
+    border-bottom: none;
+    padding-bottom: 80px;
+  }
+
+  /* Introduction section */
+  .intro {
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #70f0f9;
+    text-shadow:
+      0 0 6px #70f0f9,
+      0 0 12px #00e7fb;
+  }
+  .intro p {
+    font-size: 1.125rem;
+  }
+
+  /* Achievements grid */
+  .achievements-list {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .achievement-card {
+    background: #011317dd;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow:
+      0 0 8px #00fff077,
+      0 0 18px #00fff010;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, outline 0.3s ease;
+    border: 1px solid #00ffeaaa;
+    cursor: default;
+  }
+  /* Red glowing outline and shadow on hover, focus-visible, active */
+  .achievement-card:hover,
+  .achievement-card:focus-visible,
+  .achievement-card:active {
+    outline: none;
+    border-color: #ff3300;
+    box-shadow:
+      0 0 8px #ff3300,
+      0 0 20px #ff3300,
+      0 0 35px #ff330080,
+      0 0 60px #ff330040;
+  }
+  /* Keep outline on keyboard focus for accessibility */
+  .achievement-card:focus-visible {
+    outline: 3px solid #ff3300;
+    outline-offset: 4px;
+  }
+
+  .achievement-icon {
+    font-family: 'Material Icons';
+    font-size: 48px;
+    color: #00fff0;
+    margin-bottom: 16px;
+    align-self: center;
+    filter: drop-shadow(0 0 6px #00fff0);
+  }
+  .achievement-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .achievement-description {
+    color: #88f2ffdd;
+    flex-grow: 1;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* Projects grid */
+  .projects-list {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .project-card {
+    background: #011317dd;
+    border-radius: 16px;
+    box-shadow:
+      0 0 8px #00fff077,
+      0 0 18px #00fff010;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, outline 0.3s ease;
+    border: 1px solid #00ffeaaa;
+    cursor: default;
+  }
+  /* Red glowing outline and shadow on hover, focus-visible, active */
+  .project-card:hover,
+  .project-card:active {
+    outline: none;
+    border-color: #ff3300;
+    box-shadow:
+      0 0 8px #ff3300,
+      0 0 20px #ff3300,
+      0 0 35px #ff330080,
+      0 0 60px #ff330040;
+  }
+  /* Keep outline on keyboard focus for accessibility */
+  .project-card:focus-visible {
+    outline: 3px solid #ff3300;
+    outline-offset: 4px;
+  }
+
+  .project-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-bottom: 1px solid #00ffea88;
+    filter: drop-shadow(0 0 2px #00fff0);
+    transition: transform 0.4s ease;
+  }
+  .project-card:hover .project-image,
+  .project-card:focus-within .project-image {
+    transform: scale(1.03);
+  }
+  .project-content {
+    padding: 16px 20px 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    color: #82ffff;
+  }
+  .project-title {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #00fff0;
+    text-shadow: 0 0 12px #00fff0;
+  }
+  .project-description {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #8dfcffdd;
+    line-height: 1.4;
+  }
+  .project-link {
+    margin-top: 16px;
+    font-weight: 600;
+    color: #00fff0;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 1rem;
+    text-shadow:
+      0 0 8px #00fff0;
+    transition: text-shadow 0.3s ease;
+  }
+  .project-link:hover, .project-link:focus {
+    text-decoration: underline;
+    text-shadow:
+      0 0 18px #00fff0,
+      0 0 28px #00fff0;
+    outline: none;
+  }
+
+  /* Skills section */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    padding-top: 16px;
+  }
+  .skill {
+    background: #00fff044;
+    color: #00ffe7;
+    border: 1.5px solid #00fff0;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:
+      0 0 6px #00fff011;
+    cursor: default;
+  }
+  .skill:hover, .skill:focus {
+    background-color: #00fff0;
+    color: #020609;
+    box-shadow:
+      0 0 16px #00fff0,
+      0 0 30px #00ccffcc;
+    outline: none;
+  }
+
+  /* Contact footer */
+  footer {
+    background: #002431;
+    color: #00ffe7aa;
+    text-align: center;
+    padding: 32px 16px;
+    font-size: 0.95rem;
+    box-shadow:
+      inset 0 3px 5px #00ffec44;
+  }
+  footer a {
+    color: #00d4e0;
+    font-weight: 700;
+    text-shadow: 0 0 8px #00ececaa;
+  }
+  footer a:hover, footer a:focus {
+    color: #00fff0;
+    text-shadow: 0 0 18px #00fff0ff;
+    outline: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    header, footer {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+    .header-inner {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    nav {
+      gap: 16px;
+    }
+    .container {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner" role="banner">
+      <div class="logo" tabindex="0">My Portfolio</div>
+      <nav role="navigation" aria-label="Primary navigation">
+        <a href="#about" tabindex="0">About</a>
+        <a href="#achievements" tabindex="0">Achievements</a>
+        <a href="#projects" tabindex="0">Projects</a>
+        <a href="#skills" tabindex="0">Skills</a>
+        <a href="#contact" tabindex="0">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="container intro" tabindex="0" aria-label="Introduction">
+      <h1>Welcome to My Achievement Portfolio</h1>
+      <p>Hi, I'm a passionate developer and builder. Here you can explore my achievements, the projects I have developed, and the skills I've gained along the way.</p>
+    </section>
+
+    <section id="achievements" class="container" tabindex="0" aria-label="Achievements">
+      <h2>My Achievements</h2>
+      <div class="achievements-list">
+        <article class="achievement-card" tabindex="0">
+          <div class="achievement-icon" aria-hidden="true">emoji_events</div>
+          <h3 class="achievement-title">Certified Web Developer</h3>
+          <p class="achievement-description">Completed professional certification with distinction in building interactive web applications.</p>
+        </article>
+        <article class="achievement-card" tabindex="0">
+          <div class="achievement-icon" aria-hidden="true">star_rate</div>
+          <h3 class="achievement-title">Top Contributor Award</h3>
+          <p class="achievement-description">Recognized as a top contributor in open source projects improving community-driven software.</p>
+        </article>
+        <article class="achievement-card" tabindex="0">
+          <div class="achievement-icon" aria-hidden="true">public</div>
+          <h3 class="achievement-title">Published Developer Blog</h3>
+          <p class="achievement-description">Authored technical articles read by thousands sharing knowledge on programming best practices.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="container" tabindex="0" aria-label="Development projects">
+      <h2>Projects I've Built</h2>
+      <div class="projects-list">
+        <article class="project-card" tabindex="0">
+          <img class="project-image" src="https://placehold.co/600x450/059669/ffffff?text=Project+Management+App" alt="Screenshot of Project Management App user interface with dashboard and tasks" />
+          <div class="project-content">
+            <h3 class="project-title">Project Management App</h3>
+            <p class="project-description">A full-featured application to organize, track, and collaborate on projects with real-time updates and analytics.</p>
+            <a href="#" class="project-link" aria-label="View Project Management App details">View Details <span class="material-icons" aria-hidden="true">launch</span></a>
+          </div>
+        </article>
+        <article class="project-card" tabindex="0">
+          <img class="project-image" src="https://placehold.co/600x450/059669/ffffff?text=Personal+Website" alt="Screenshot of a personal website homepage with introduction and portfolio showcase" />
+          <div class="project-content">
+            <h3 class="project-title">Personal Portfolio Website</h3>
+            <p class="project-description">Designed and developed this responsive portfolio showcasing my experience, achievements, and projects with a focus on clean modern UI.</p>
+            <a href="#" class="project-link" aria-label="View Personal Portfolio Website details">View Details <span class="material-icons" aria-hidden="true">launch</span></a>
+          </div>
+        </article>
+        <article class="project-card" tabindex="0">
+          <img class="project-image" src="https://placehold.co/600x450/059669/ffffff?text=Fitness+Tracker+App" alt="Fitness tracker app interface showing workout timer and progress charts" />
+          <div class="project-content">
+            <h3 class="project-title">Fitness Tracker App</h3>
+            <p class="project-description">Mobile app to track workouts, nutrition, sleep, and progress — featuring motivating UI and easy data logging.</p>
+            <a href="#" class="project-link" aria-label="View Fitness Tracker App details">View Details <span class="material-icons" aria-hidden="true">launch</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="container" tabindex="0" aria-label="Skills and technologies">
+      <h2>Skills & Technologies</h2>
+      <div class="skills-list" role="list">
+        <div class="skill" role="listitem" tabindex="0">JavaScript</div>
+        <div class="skill" role="listitem" tabindex="0">React</div>
+        <div class="skill" role="listitem" tabindex="0">HTML5 & CSS3</div>
+        <div class="skill" role="listitem" tabindex="0">TypeScript</div>
+        <div class="skill" role="listitem" tabindex="0">Node.js</div>
+        <div class="skill" role="listitem" tabindex="0">GraphQL</div>
+        <div class="skill" role="listitem" tabindex="0">REST APIs</div>
+        <div class="skill" role="listitem" tabindex="0">Git & GitHub</div>
+        <div class="skill" role="listitem" tabindex="0">Figma (UI/UX)</div>
+      </div>
+    </section>
+
+    <section id="contact" class="container" tabindex="0" aria-label="Contact information">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out if you'd like to collaborate, connect, or learn more about my work.</p>
+      <p>
+        Email: <a href="mailto:your.email@example.com" tabindex="0">your.email@example.com</a><br />
+        LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener" tabindex="0">linkedin.com/in/yourprofile</a><br />
+        GitHub: <a href="https://github.com/yourgithub" target="_blank" rel="noopener" tabindex="0">github.com/yourgithub</a>
+      </p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    &copy; 2024 Your Name. Designed with a modern neon aesthetic.
+  </footer>
+</body>
+</html>
